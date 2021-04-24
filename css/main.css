@@ -1,0 +1,35 @@
+html {
+    background-color: rgb(230, 230, 230);
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+header,
+footer {
+    margin-top: 10px;
+    text-align: center;
+    color: rgb(212, 212, 212);
+    background-color: rgb(2, 88, 2);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+main {
+    padding: 50px 20px;
+}
+
+footer {
+    font-size: .8rem;
+}
+
+footer a {
+    color: rgb(212, 212, 212);
+}
+
+#date {
+    color: rgb(212, 212, 212);
+}
