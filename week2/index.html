@@ -13,25 +13,70 @@
         <h1>Sam Tindall</h1>
     </header>
     <main>
-        <h2>WDD 330: Week 1</h2>
+        <h2>WDD 330: Week 2</h2>
         <div id="exercises">
             <h3>Exercises</h3>
+            <h4>Eloquent JavaScript Code Sandbox 2.3</h4>
+            <p>let size = 8;<br>
+                let board = "";<br>
+                <br>
+                for (let i = 0; i < size; i++) {<br>
+                  for (let x = 0; x < size; x++) {<br>
+                    if ((x + i) % 2 == 0) {<br>
+                      board += " ";<br>
+                    } else {<br>
+                      board += "#";<br>
+                    }<br>
+                  }<br>
+                  board += "\n";<br>
+                }<br>
+                console.log(board);</p>
+            <h4>Eloquent JavaScript Code Sandbox 3.3</h4>
+            <p>function countChar(string, ch) {<br>
+                let count = 0;<br>
+                for (let i = 0; i < string.length; i++) {<br>
+                  if (string[i] == ch) {<br>
+                    count += 1;<br>
+                  }<br>
+                }<br>
+                return count;<br>
+              }<br>
+              <br>
+              function countBs(string) {<br>
+                return countChar(string, "B");<br>
+              }<br>
+              <br>
+              console.log(countBs("BBC"));<br>
+              // → 2<br>
+              console.log(countChar("kakkerlak", "k"));<br>
+              // → 4</p>
+            <h4>Eloquent JavaScript Code Sandbox 4.4</h4>
+            <p>function deepEqual(x, y) {<br>
+                if (x === y) return true;<br>
+                if (x == null || typeof x != "object" || y == null || typeof y != "object") return false;<br>
+                <br>
+                let xKey = Object.keys(x), yKey = Object.keys(y);<br>
+                if (xKey.length != yKey.length) return false;<br>
+                for (let key of xKey) {<br>
+                  if (!yKey.includes(key) || !deepEqual(x[key], y[key])) return false;<br>
+                }<br>
+                return true;<br>
+              }<br>
+              <br>
+              let obj = {here: {is: "an"}, object: 2};<br>
+              console.log(deepEqual(obj, obj));<br>
+              // → true<br>
+              console.log(deepEqual(obj, {here: 1, object: 2}));<br>
+              // → false<br>
+              console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));<br>
+              // → true</p>
         </div>
         <div id="notes">
             <h3>Notes</h3>
             <ul>
-                <li>I thought it was interesting that the portfolio instructions mentioned creating an 'ol' element in the HTML. It made more sense to me to make
-                     it via js, like the 'li' and 'a' elements.
+                <li>I'm taking this course concurrently with Web Backend 1 & 2, so I'm already familiar with some of the extra stuff covered in JavaScript: Novice to Ninja chapter 1 (though I know it wasn't required).
                 </li>
-                <li>The reading said "When you want to get the user’s input from any input or text area
-                     tag, you use the special word ‘value.’ When you want to show
-                     something to a user, you use a section (see Section 1) and the special word ‘innerHTML.’ So...if your dealing with
-                     an input or textarea use value; a section, use innerHTML." <br>
-                     It's something I intuitively learned through experience, but I have tripped up a few times on figuring out when to use value or innerHTML.
-                     It's nice to see an explanation here.
-                </li>
-                <li>localStorage seems very limited in real world application if it only works on the same system that previously ran the app. It's one thing for
-                     learning the ropes, but I would be surprised if real world developers use it much, or at least in the way shown.
+                <li>The rest is pretty much review, so I just did some of the exercises in the code sandbox.
                 </li>
             </ul>
         </div>
