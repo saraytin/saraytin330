@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sam Tindall - WDD 330</title>
+		<meta name="description" content="Assignments for Sam Tindall in WDD330" />
+		<link rel="stylesheet" href="../css/main.css" />
+	</head>
+
+	<body>
+		<header>
+			<h1>Sam Tindall</h1>
+		</header>
+		<main>
+			<h2>WDD 330: Week 3</h2>
+			<div id="exercises">
+				<h3>Exercises</h3>
+				<h4>Eloquent JavaScript Code Sandbox 14.1</h4>
+				<h5>Mountains</h5>
+
+				<div id="mountains"></div>
+
+				<script>
+					const MOUNTAINS = [
+						{ name: 'Kilimanjaro', height: 5895, place: 'Tanzania' },
+						{ name: 'Everest', height: 8848, place: 'Nepal' },
+						{ name: 'Mount Fuji', height: 3776, place: 'Japan' },
+						{ name: 'Vaalserberg', height: 323, place: 'Netherlands' },
+						{ name: 'Denali', height: 6168, place: 'United States' },
+						{ name: 'Popocatepetl', height: 5465, place: 'Mexico' },
+						{ name: 'Mont Blanc', height: 4808, place: 'Italy/France' },
+					];
+
+					// Your code here
+					var table = document.createElement('table');
+					var headingRow = document.createElement('tr');
+					var headingName = document.createElement('th');
+					var headingHeight = document.createElement('th');
+					var headingPlace = document.createElement('th');
+					headingName.textContent = 'Name';
+					headingHeight.textContent = 'Height';
+					headingPlace.textContent = 'Place';
+					headingRow.appendChild(headingName);
+					headingRow.appendChild(headingHeight);
+					headingRow.appendChild(headingPlace);
+					table.appendChild(headingRow);
+					for (i = 0; i < MOUNTAINS.length; i++) {
+						let row = document.createElement('tr');
+						let name = document.createElement('td');
+						let height = document.createElement('td');
+						let place = document.createElement('td');
+						name.textContent = MOUNTAINS[i].name;
+						height.textContent = MOUNTAINS[i].height;
+						place.textContent = MOUNTAINS[i].place;
+						height.setAttribute('style', 'text-align: right;');
+						row.appendChild(name);
+						row.appendChild(height);
+						row.appendChild(place);
+						table.appendChild(row);
+					}
+					document.getElementById('mountains').appendChild(table);
+				</script>
+				<h4>Eloquent JavaScript Code Sandbox 14.3</h4>
+				<h5>(Small) Heading with a <span>span</span> element.</h5>
+				<p>A paragraph with <span>one</span>, <span>two</span> spans.</p>
+
+				<script>
+					function byTagName(node, tagName) {
+						let found = [];
+						tagName = tagName.toUpperCase();
+
+						function findTag(node) {
+							for (let i = 0; i < node.childNodes.length; i++) {
+								let child = node.childNodes[i];
+								if (child.nodeType == document.ELEMENT_NODE) {
+									if (child.nodeName == tagName) found.push(child);
+									findTag(child);
+								}
+							}
+						}
+
+						findTag(node);
+						return found;
+					}
+
+					console.log(byTagName(document.body, 'h5').length);
+					// → 1
+					console.log(byTagName(document.body, 'span').length);
+					// → 3
+					let para = document.querySelector('p');
+					console.log(byTagName(para, 'span').length);
+					// → 2
+				</script>
+				<h4>Eloquent JavaScript Code Sandbox 15.1</h4>
+				<p id="balloon">🎈</p>
+
+				<script>
+					let p = document.querySelector('p#balloon');
+					let size;
+					function setSize(newSize) {
+						size = newSize;
+						p.style.fontSize = size + 'px';
+					}
+					setSize(20);
+
+					function changeSize(event) {
+						if (event.key == 'ArrowUp') {
+							if (size > 70) {
+								p.textContent = '💥';
+								document.body.removeEventListener('keydown', changeSize);
+							} else {
+								setSize(size * 1.1);
+								event.preventDefault();
+							}
+						} else if (event.key == 'ArrowDown') {
+							setSize(size * 0.9);
+							event.preventDefault();
+						}
+					}
+					document.body.addEventListener('keydown', changeSize);
+				</script>
+				<h4>Eloquent JavaScript Code Sandbox 15.3</h4>
+				<tab-panel>
+					<div data-tabname="one">Tab one</div>
+					<div data-tabname="two">Tab two</div>
+					<div data-tabname="three">Tab three</div>
+				</tab-panel>
+				<script>
+					function asTabs(node) {
+						let tabs = Array.from(node.children).map((node) => {
+							let button = document.createElement('button');
+							button.textContent = node.getAttribute('data-tabname');
+							let tab = { node, button };
+							button.addEventListener('click', () => selectTab(tab));
+							return tab;
+						});
+
+						let tabList = document.createElement('div');
+						for (let { button } of tabs) tabList.appendChild(button);
+						node.insertBefore(tabList, node.firstChild);
+
+						function selectTab(selectedTab) {
+							for (let tab of tabs) {
+								let selected = tab == selectedTab;
+								tab.node.style.display = selected ? '' : 'none';
+								tab.button.style.color = selected ? 'red' : '';
+							}
+						}
+						selectTab(tabs[0]);
+					}
+
+					asTabs(document.querySelector('tab-panel'));
+				</script>
+			</div>
+			<div id="notes">
+				<h3>Notes</h3>
+				<ul>
+					<li>
+						It occurred to me that it'd be better to show the results of my exercise code, since you can just view
+						source to see the code itself.
+					</li>
+					<li>
+						As before, I find it more straightforward to just do and show exercises. In this case I selected based off
+						what makes sense to put into an existing page.
+					</li>
+				</ul>
+			</div>
+		</main>
+		<footer>
+			<p><span id="year"></span> | Sam Tindall | WDD330</p>
+			<p id="date"></p>
+			<script src="../js/lastModified.js"></script>
+		</footer>
+	</body>
+</html>

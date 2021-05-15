@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+	const MOUNTAINS = [
+		{ name: 'Kilimanjaro', height: 5895, place: 'Tanzania' },
+		{ name: 'Everest', height: 8848, place: 'Nepal' },
+		{ name: 'Mount Fuji', height: 3776, place: 'Japan' },
+		{ name: 'Vaalserberg', height: 323, place: 'Netherlands' },
+		{ name: 'Denali', height: 6168, place: 'United States' },
+		{ name: 'Popocatepetl', height: 5465, place: 'Mexico' },
+		{ name: 'Mont Blanc', height: 4808, place: 'Italy/France' },
+	];
+
+	// Your code here
+	var table = document.createElement('table');
+	var headingRow = document.createElement('tr');
+	var headingName = document.createElement('th');
+	var headingHeight = document.createElement('th');
+	var headingPlace = document.createElement('th');
+	headingName.textContent = 'Name';
+	headingHeight.textContent = 'Height';
+	headingPlace.textContent = 'Place';
+	headingRow.appendChild(headingName);
+	headingRow.appendChild(headingHeight);
+	headingRow.appendChild(headingPlace);
+	table.appendChild(headingRow);
+	for (i = 0; i < MOUNTAINS.length; i++) {
+		let row = document.createElement('tr');
+		let name = document.createElement('td');
+		let height = document.createElement('td');
+		let place = document.createElement('td');
+		name.textContent = MOUNTAINS[i].name;
+		height.textContent = MOUNTAINS[i].height;
+		place.textContent = MOUNTAINS[i].place;
+		height.setAttribute('style', 'text-align: right;');
+		row.appendChild(name);
+		row.appendChild(height);
+		row.appendChild(place);
+		table.appendChild(row);
+	}
+	document.getElementById('mountains').appendChild(table);
+</script>
+
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span> spans.</p>
+
+<script>
+	function byTagName(node, tagName) {
+		let found = [];
+		tagName = tagName.toUpperCase();
+
+		function findTag(node) {
+			for (let i = 0; i < node.childNodes.length; i++) {
+				let child = node.childNodes[i];
+				if (child.nodeType == document.ELEMENT_NODE) {
+					if (child.nodeName == tagName) found.push(child);
+					findTag(child);
+				}
+			}
+		}
+
+		findTag(node);
+		return found;
+	}
+
+	console.log(byTagName(document.body, 'h1').length);
+	// → 1 -> 2
+	console.log(byTagName(document.body, 'span').length);
+	// → 3
+	let para = document.querySelector('p');
+	console.log(byTagName(para, 'span').length);
+	// → 2
+</script>
+
+<p>🎈</p>
+
+<script>
+	let p = document.querySelector('p');
+	let size;
+	function setSize(newSize) {
+		size = newSize;
+		p.style.fontSize = size + 'px';
+	}
+	setSize(20);
+
+	function changeSize(event) {
+		if (event.key == 'ArrowUp') {
+			if (size > 70) {
+				p.textContent = '💥';
+				document.body.removeEventListener('keydown', changeSize);
+			} else {
+				setSize(size * 1.1);
+				event.preventDefault();
+			}
+		} else if (event.key == 'ArrowDown') {
+			setSize(size * 0.9);
+			event.preventDefault();
+		}
+	}
+	document.body.addEventListener('keydown', changeSize);
+</script>
+
+<tab-panel>
+	<div data-tabname="one">Tab one</div>
+	<div data-tabname="two">Tab two</div>
+	<div data-tabname="three">Tab three</div>
+</tab-panel>
+<script>
+	function asTabs(node) {
+		let tabs = Array.from(node.children).map((node) => {
+			let button = document.createElement('button');
+			button.textContent = node.getAttribute('data-tabname');
+			let tab = { node, button };
+			button.addEventListener('click', () => selectTab(tab));
+			return tab;
+		});
+
+		let tabList = document.createElement('div');
+		for (let { button } of tabs) tabList.appendChild(button);
+		node.insertBefore(tabList, node.firstChild);
+
+		function selectTab(selectedTab) {
+			for (let tab of tabs) {
+				let selected = tab == selectedTab;
+				tab.node.style.display = selected ? '' : 'none';
+				tab.button.style.color = selected ? 'red' : '';
+			}
+		}
+		selectTab(tabs[0]);
+	}
+
+	asTabs(document.querySelector('tab-panel'));
+</script>
