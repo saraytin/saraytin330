@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sam Tindall - WDD 330</title>
+    <meta name="description" content="Assignments for Sam Tindall in WDD330" />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Sam Tindall</h1>
+    </header>
+    <main>
+      <h2>WDD 330: Week 5</h2>
+      <div id="exercises">
+        <h3>Exercises</h3>
+        <p>All of these just had console.log tests, so I stringified where necessary and used document.write</p>
+
+        <h4>Eloquent JavaScript Code Sandbox 8.1</h4>
+        <script>
+          class MultiplicatorUnitFailure extends Error {}
+
+          function primitiveMultiply(a, b) {
+            if (Math.random() < 0.2) {
+              return a * b;
+            } else {
+              throw new MultiplicatorUnitFailure('Klunk');
+            }
+          }
+
+          function reliableMultiply(a, b) {
+            for (;;) {
+              try {
+                return primitiveMultiply(a, b);
+              } catch (e) {
+                if (!(e instanceof MultiplicatorUnitFailure)) throw e;
+              }
+            }
+          }
+
+          document.write(reliableMultiply(8, 8));
+          // → 64
+        </script>
+
+        <h4>Eloquent JavaScript Code Sandbox 8.2</h4>
+        <script>
+          const box = {
+            locked: true,
+            unlock() {
+              this.locked = false;
+            },
+            lock() {
+              this.locked = true;
+            },
+            _content: [],
+            get content() {
+              if (this.locked) throw new Error('Locked!');
+              return this._content;
+            },
+          };
+
+          function withBoxUnlocked(body) {
+            let locked = box.locked;
+            if (!locked) {
+              return body();
+            }
+
+            box.unlock();
+            try {
+              return body();
+            } finally {
+              box.lock();
+            }
+          }
+
+          withBoxUnlocked(function () {
+            box.content.push('gold piece');
+          });
+
+          try {
+            withBoxUnlocked(function () {
+              throw new Error('Pirates on the horizon! Abort!' + '<br>');
+            });
+          } catch (e) {
+            document.write('Error raised: ' + e);
+          }
+          document.write(box.locked);
+          // → true
+        </script>
+      </div>
+      <div id="notes">
+        <hr />
+        <h3>Notes</h3>
+        <ul>
+          <li>I wound up doing all of the code sandbox exercises because there were only two.</li>
+        </ul>
+      </div>
+    </main>
+    <footer>
+      <p><span id="year"></span> | Sam Tindall | WDD330</p>
+      <p id="date"></p>
+      <script src="../js/lastModified.js"></script>
+    </footer>
+  </body>
+</html>
