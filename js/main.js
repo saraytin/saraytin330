@@ -19,6 +19,10 @@ const links = [
     label: 'Week 5 Notes',
     url: 'week5/',
   },
+  {
+    label: 'Week 6: ToDo List',
+    url: 'week6/',
+  },
 ];
 
 buildList();
