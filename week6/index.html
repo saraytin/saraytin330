@@ -3,24 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sam Tindall - WDD 330</title>
-    <meta name="description" content="Assignments for Sam Tindall in WDD330" />
+    <title>Web App: ToDo list</title>
+    <meta name="description" content="Week 5 and 6 challenge assignment for Sam Tindall in WDD330" />
     <link rel="stylesheet" href="../css/main.css" />
   </head>
 
   <body>
     <header>
-      <h1>Sam Tindall</h1>
+      <h1>Todos</h1>
     </header>
     <main>
-      <h2>WDD 330: Assignment Portal</h2>
       <div id="list"></div>
     </main>
-    <footer>
-      <p><span id="year"></span> | Sam Tindall | WDD330</p>
-      <p id="date"></p>
-      <script src="../js/main.js"></script>
-      <script src="../js/lastModified.js"></script>
-    </footer>
+    <footer><textarea id="newTodo" rows="3" cols="50"></textarea><button onclick="addTodo()">+</button></footer>
+    <script src="./js/main.js" type="module"></script>
   </body>
 </html>
