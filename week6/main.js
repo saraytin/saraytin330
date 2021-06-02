@@ -3,14 +3,30 @@ import { renderTodo, addTodo, checkTask, startList } from './modules/utilities.j
 import { getList, setList } from './modules/ls.js';
 
 document.getElementById('btnsave').addEventListener('click', addTodo, false);
-checkTask();
 
-let todoList = [];
-try {
-  todoList = getList();
+export let todoList = [];
+
+loadPage();
+
+function loadPage() {
+  switch (getList()) {
+    case null:
+      startList();
+      break;
+    default:
+      todoList = getList();
+      renderTodo();
+  }
+}
+
+/* try {
+  console.log(getList());
 } catch (err) {
   startList();
-}
+} */
+
+checkTask();
+
 /* switch (todoList) {
   case '':
   case null:
@@ -19,8 +35,6 @@ try {
   default:
     renderTodo(todoList);
 } */
-
-renderTodo(todoList);
 
 /* function addTodo() {
   let task = document.querySelector('textarea#newTodo').value;
@@ -33,10 +47,12 @@ renderTodo(todoList);
 export function saveTodo(text) {
   let task = new Todo(text);
   todoList.push(task);
-  renderTodo(todoList);
+  renderTodo();
   setList(todoList);
 }
 
 export function removeTodo() {
-  console.log('task cannot be removed');
+  localStorage.clear();
+  loadPage();
+  console.log('task cannot be removed individually yet');
 }

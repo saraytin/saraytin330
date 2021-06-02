@@ -1,13 +1,12 @@
 // Document manipulation
-import { saveTodo, removeTodo } from '../main.js';
+import { saveTodo, removeTodo, todoList } from '../main.js';
 
 const removeUrl = './images/remove.png';
 const removeAlt = 'picture of a red x';
 
-export function renderTodo(todoList) {
+export function renderTodo() {
   /*  let todoJson = JSON.parse(todoList); */
   let i = 0;
-  console.log(todoList);
   document.getElementById('list').innerHTML = '';
   for (i = 0; i < todoList.length; i++) {
     let card = document.createElement('section');
