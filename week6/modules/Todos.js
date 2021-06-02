@@ -7,10 +7,10 @@ export default class Todo {
     this.done = false;
   }
 
-  static addTodo(task) {
+  /* static addTodo(task) {
     let newTodo = new Todo(task);
     return newTodo;
-  }
+  } */
 
   listTodos() {
     return JSON.stringify(this);

@@ -1,9 +1,9 @@
 // Local storage functions
 
 export function getList() {
-  return localStorage.getItem('todoList');
+  return JSON.parse(localStorage.getItem('todoList'));
 }
 
 export function setList(array) {
-  localStorage.setItem('todoList', array);
+  localStorage.setItem('todoList', JSON.stringify(array));
 }
