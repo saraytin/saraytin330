@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sam Tindall - WDD 330</title>
+    <meta name="description" content="Assignments for Sam Tindall in WDD330" />
+    <link rel="stylesheet" href="../css/main.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Sam Tindall</h1>
+    </header>
+    <main>
+      <h2>WDD 330: Week 5</h2>
+      <script>
+        const url = "https://eloquentjavascript.net/author";
+        const array = ["text/plain", "text/html", "application/json", "application/rainbows+unicorns"];
+
+        async function showTypes() {
+          for (let a of array) {
+            let resp = await fetch(url, { headers: { accept: a } });
+            document.write(`${a}: ${await resp.text()}\n`);
+          }
+        }
+
+        showTypes();
+      </script>
+    </main>
+    <footer>
+      <p><span id="year"></span> | Sam Tindall | WDD330</p>
+      <p id="date"></p>
+      <script src="../js/lastModified.js"></script>
+    </footer>
+  </body>
+</html>

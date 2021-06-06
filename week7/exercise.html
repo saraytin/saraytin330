@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<script>
+  let arrays = [[1, 2, 3], [4, 5], [6]];
+
+  document.write(arrays.reduce((flat, current) => flat.concat(current), []) + "<br>");
+  // → [1, 2, 3, 4, 5, 6]
+  document.write("<br>Expected output: <br>// → [1, 2, 3, 4, 5, 6] <br>");
+</script>
+
+<script>
+  function loop(start, test, update, body) {
+    for (let i = start; test(i); i = update(i)) {
+      body(i);
+    }
+  }
+
+  loop(
+    3,
+    (n) => n > 0,
+    (n) => n - 1,
+    document.write.bind(document)
+  );
+  document.write("<br>Expected output: <br>// → 3<br>// → 2<br>// → 1 <br>");
+</script>
+
+<script>
+  function every(array, predicate) {
+    for (let element of array) {
+      if (!predicate(element)) return false;
+    }
+    return true;
+  }
+
+  document.write(every([1, 3, 5], (n) => n < 10) + "<br>");
+  // → true
+  document.write(every([2, 4, 16], (n) => n < 10) + "<br>");
+  // → false
+  document.write(every([], (n) => n < 10) + "<br>");
+  // → true
+
+  document.write("<br>Expected output: <br>// → true<br>// → false<br>// → true <br>");
+</script>
+
+<!-- <script>
+  const url = "https://eloquentjavascript.net/author";
+  const array = ["text/plain", "text/html", "application/json", "application/rainbows+unicorns"];
+
+  async function showTypes() {
+    for (let a of array) {
+      let resp = await fetch(url, { headers: { accept: a } });
+      document.write(`${a}: ${await resp.text()}\n`);
+    }
+  }
+
+  showTypes();
+</script> -->
+
+<!-- <script src="./18_http.js"></script> -->
+
+<textarea id="code">return "hi";</textarea>
+<button id="button">Run</button>
+<pre id="output"></pre>
+
+<script>
+  document.querySelector("#button").addEventListener("click", function () {
+    let code = document.querySelector("#code").value;
+    let outputNode = document.querySelector("#output");
+    try {
+      let result = Function(code)();
+      outputNode.innerText = String(result);
+    } catch (e) {
+      outputNode.innerText = "Error: " + e;
+    }
+  });
+</script>
