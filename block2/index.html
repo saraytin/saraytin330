@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <title>Food Tracker</title>
+    <meta name="description" content="Block 2 challenge assignment for Sam Tindall in WDD330" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <img src="./foodSearch.png" alt="food search logo" id="logo" />
+      <h1>Food Searcher 9000</h1>
+    </header>
+    <main>
+      <a class="slider" href="#foods">Foods</a>
+      <a class="slider" href="#goals">Goals</a>
+      <a class="slider" href="#stats">Stats</a>
+      <div class="slides">
+        <div class="display" id="foods">
+          <h2>Search Foods</h2>
+          <label for="foodSearch" class="sr-only">Search for foods</label>
+          <input type="text" name="foodSearch" id="foodSearch" placeholder="Search for a food here" /><br />
+          <!-- <button id="submitSearch">Search</button><br /> -->
+          <div id="searchResult"></div>
+          <div id="foodList"></div>
+          <button id="clearFoods">Clear</button>
+          <button id="fullFoods">Show All</button>
+        </div>
+        <div class="display" id="goals">
+          <h2>Goals</h2>
+          <label for="goalInput" class="sr-only">Type your goal</label>
+          <input type="text" name="goalInput" id="goalInput" placeholder="Add a goal here" /><br />
+          <button id="addGoal">Add Goal</button>
+          <div id="goalList"></div>
+          <button id="clearGoals">Clear</button>
+          <button id="fullGoals">Show All</button>
+        </div>
+        <div class="display" id="stats">
+          <h2>Nutrient Totals:</h2>
+          <ul>
+            <li>Calories: <span id="totalCal"></span> kcal</li>
+            <li>Protein: <span id="totalPro"></span> g</li>
+            <li>Fat: <span id="totalFat"></span> g</li>
+            <li>Carbs: <span id="totalCarb"></span> g</li>
+            <li>Fiber: <span id="totalFib"></span> g</li>
+          </ul>
+          <h3>Daily Recommended:</h3>
+          <ul>
+            <li>Calories: <span>2000</span> kcal</li>
+            <li>Protein: <span>50</span> g</li>
+            <li>Fat: <span>&lt; 70</span> g</li>
+            <li>Carbs: <span>&lt; 260</span> g</li>
+            <li>Fiber: <span>25</span> g</li>
+          </ul>
+          <h3>Remaining:</h3>
+          <ul>
+            <li>Calories: <span id="remCal"></span> kcal</li>
+            <li>Protein: <span id="remPro"></span> g</li>
+            <li>Fat: <b>&lt; </b><span id="remFat"></span> g</li>
+            <li>Carbs: <b>&lt; </b><span id="remCarb"></span> g</li>
+            <li>Fiber: <span id="remFib"></span> g</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer><p>Sam Tindall | WDD330 | BYU-Idaho</p></footer>
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>

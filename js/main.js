@@ -39,6 +39,10 @@ const links = [
     label: "Week 10 Notes",
     url: "week10/",
   },
+  {
+    label: "Block 2 Project",
+    url: "block2/",
+  },
 ];
 
 buildList();
